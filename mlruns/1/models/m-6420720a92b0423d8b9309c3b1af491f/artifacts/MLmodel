@@ -1,0 +1,48 @@
+artifact_path: file:C:/Users/jayde/risk_classification/mlruns/1/models/m-6420720a92b0423d8b9309c3b1af491f/artifacts
+flavors:
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.skops
+    predict_fn: predict
+    python_version: 3.12.10
+  sklearn:
+    code: null
+    pickled_model: model.skops
+    serialization_format: skops
+    sklearn_version: 1.9.1
+    skops_trusted_types:
+    - collections.OrderedDict
+    - lightgbm.basic.Booster
+    - lightgbm.sklearn.LGBMClassifier
+    - sklearn.calibration._CalibratedClassifier
+    - sklearn.frozen.FrozenEstimator
+is_signature_from_type_hint: false
+mlflow_version: 3.18.0
+model_id: m-6420720a92b0423d8b9309c3b1af491f
+model_size_bytes: 1540146
+model_uuid: m-6420720a92b0423d8b9309c3b1af491f
+prompts: null
+run_id: 38f2cd5f207748329efe0eec9d3cba0f
+saved_input_example_info:
+  artifact_path: input_example.json
+  pandas_orient: split
+  serving_input_path: serving_input_example.json
+  type: dataframe
+signature:
+  inputs: '[{"type": "double", "name": "risk_signal_0", "required": true}, {"type":
+    "double", "name": "risk_signal_1", "required": true}, {"type": "double", "name":
+    "risk_signal_2", "required": true}, {"type": "double", "name": "risk_signal_3",
+    "required": true}, {"type": "double", "name": "risk_signal_4", "required": true},
+    {"type": "double", "name": "risk_signal_5", "required": true}, {"type": "double",
+    "name": "risk_signal_6", "required": true}, {"type": "double", "name": "risk_signal_7",
+    "required": true}, {"type": "double", "name": "risk_signal_8", "required": true},
+    {"type": "double", "name": "risk_signal_9", "required": true}, {"type": "double",
+    "name": "risk_signal_10", "required": true}, {"type": "double", "name": "risk_signal_11",
+    "required": true}]'
+  outputs: '[{"type": "long", "required": true}]'
+  params: null
+type_hint_from_example: false
+utc_time_created: '2026-11-19 05:23:59.693816'
