@@ -2,6 +2,8 @@ service: "serve_bento:TrustSafetyRiskService"
 labels:
   owner: trust-safety-ml
   stage: production
+models:
+ - "trust_safety_champion:latest"
 include:
   - "serve_bento.py"
 exclude:
@@ -11,7 +13,6 @@ exclude:
   - ".venv/"
 python:
  packages:
-  - "mlflow>=3.0.0"
   - "lightgbm"
   - "scikit-learn>=1.6.0"
   - "pandas"

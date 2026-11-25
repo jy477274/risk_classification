@@ -1,13 +1,9 @@
 from typing import Literal
 import os
 import bentoml
-import mlflow
-import mlflow.sklearn
 import pandas as pd
 from pydantic import BaseModel, Field
 
-MLFLOW_TRACKING_URI = os.getenv("MLFLOW_TRACKING_URI", "http://127.0.0.1:5000")
-mlflow.set_tracking_uri(MLFLOW_TRACKING_URI)
 MODEL_URI = os.getenv("MODEL_URI", "models:/trust-safety-classifier@champion")
 
 class TransactionFeatures(BaseModel):
@@ -71,8 +67,8 @@ def route_decision(prob: float, amount: float) -> Literal["APPROVE", "STEP_UP_RE
 class TrustSafetyRiskService:
     def __init__(self) -> None:
         #runs once per worker process at startup
-        print(f"Loading model artifact from {MODEL_URI}...")
-        self.model = mlflow.sklearn.load_model(MODEL_URI)
+        print(f"Loading model artifact from bentoml local store..")
+        self.model = bentoml.sklearn.load_model("trust_safety_champion:latest")
         print("Champion model loaded and ready for inference")
 
     @bentoml.on_shutdown
