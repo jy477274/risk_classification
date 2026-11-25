@@ -1,0 +1,23 @@
+service: "serve_bento:TrustSafetyRiskService"
+labels:
+  owner: trust-safety-ml
+  stage: production
+include:
+  - "serve_bento.py"
+exclude:
+  - "data/"
+  - "mlruns/"
+  - "mlflow.db"
+  - ".venv/"
+python:
+ packages:
+  - "mlflow>=3.0.0"
+  - "lightgbm"
+  - "scikit-learn>=1.6.0"
+  - "pandas"
+  - "pydantic>=2.0.0"
+docker:
+  distro: debian
+  python_version: "3.12"
+  system_packages:
+    - libgomp1 #Required by LightGBM for slim linux images

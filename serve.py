@@ -17,7 +17,7 @@ ml_models = {}
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    print("Loading model artifact from {MODEL_URI}...")
+    print(f"Loading model artifact from {MODEL_URI}...")
     ml_models["champion"] = mlflow.sklearn.load_model(MODEL_URI)
     print("Champion model loaded and ready for inference")
     #clear model container on shut-down
@@ -78,7 +78,7 @@ def route_decision(prob: float, amount: float) -> Literal["APPROVE", "STEP_UP_RE
     review_threshold = 0.0057 #1% FPR operating point
 
     #review microtransactions to avoid high FPR
-    if (amount <= 10.0) & (0.50 <= prob <= 0.75):
+    if (amount <= 10.0) and (0.50 <= prob <= 0.75):
         return "STEP_UP_REVIEW"
     elif prob >= block_threshold:
         return "BLOCK"
