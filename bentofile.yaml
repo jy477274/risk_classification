@@ -1,24 +1,27 @@
-service: "serve_bento:TrustSafetyRiskService"
+service: "serve_bento_gb.py:TrustSafetyRiskService"
 labels:
   owner: trust-safety-ml
   stage: production
 models:
- - "trust_safety_champion:latest"
+  - "trust_safety_champion:latest"
+  - "trust_safety_challenger:latest"
 include:
-  - "serve_bento.py"
+  - "serve_bento_gb.py"
 exclude:
   - "data/"
   - "mlruns/"
   - "mlflow.db"
   - ".venv/"
 python:
- packages:
-  - "lightgbm"
-  - "scikit-learn>=1.6.0"
-  - "pandas"
-  - "pydantic>=2.0.0"
+  packages:
+    - "lightgbm"
+    - "scikit-learn>=1.6.0"
+    - "pandas"
+    - "pydantic>=2.0.0"
+    - "growthbook"
+    - "prometheus-client"
 docker:
   distro: debian
   python_version: "3.12"
   system_packages:
-    - libgomp1 #Required by LightGBM for slim linux images
+    - libgomp1
